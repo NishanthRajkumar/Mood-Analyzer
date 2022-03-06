@@ -43,7 +43,7 @@ public class TestMood
     }
 
     [TestMethod]
-    public void TestMoodReflectionDefaultCtor()
+    public void ValidTestMoodReflectionDefaultCtor()
     {
         string message = null;
         MoodAnalyser expected = new MoodAnalyser(message);
@@ -51,5 +51,14 @@ public class TestMood
         Assert.AreNotEqual(expected, obj);
     }
 
-
+    [TestMethod]
+    [ExpectedException(typeof(MoodAnalysisException))]
+    [DataRow("MoodAnalyzer.MoodAnalysers", "MoodAnalyser", "sad")]
+    [DataRow("MoodAnalyzer.MoodAnalyser", "MoodAnalysers", "sad")]
+    public void InvalidTestMoodReflectionParamCtor(string className, string ctorName, string message)
+    {
+        MoodAnalyser expected = new MoodAnalyser(message);
+        object obj = MoodAnalyserFactory.CreateMoodAnalyserObject(className, ctorName, message);
+        Assert.AreNotEqual(expected, obj);
+    }
 }
