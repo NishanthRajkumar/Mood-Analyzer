@@ -25,6 +25,7 @@ public class TestMood
     /// <param name="message">The message.</param>
     [TestMethod]
     [DataRow("I am in any Mood")]
+    [DataRow(null)]
     public void TestHappyMood(string message)
     {
         MoodAnalyser moodAnalyser = new MoodAnalyser(message);
