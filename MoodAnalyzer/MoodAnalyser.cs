@@ -21,14 +21,16 @@ public class MoodAnalyser
     {
         try
         {
+            if (message == "")
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EMPTY_MOOD, "Mood is empty");
             if (message.Contains("Sad", StringComparison.OrdinalIgnoreCase) is true)
                 return "Sad";
             return "Happy";
         }
-        catch (NullReferenceException e)
+        catch (NullReferenceException)
         {
-            Console.WriteLine("Invalid! There is no message given to analyze");
-            return "Happy";
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL_MOOD, "Mood is null");
         }
+        return null;
     }
 }

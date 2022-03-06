@@ -25,11 +25,20 @@ public class TestMood
     /// <param name="message">The message.</param>
     [TestMethod]
     [DataRow("I am in any Mood")]
-    [DataRow(null)]
     public void TestHappyMood(string message)
     {
         MoodAnalyser moodAnalyser = new MoodAnalyser(message);
         string result = moodAnalyser.AnalyseMood();
         Assert.AreEqual("Happy", result);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(MoodAnalysisException))]
+    [DataRow(null)]
+    [DataRow("")]
+    public void TestMoodException(string message)
+    {
+        MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+        moodAnalyser.AnalyseMood();
     }
 }
