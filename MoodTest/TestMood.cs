@@ -14,8 +14,8 @@ public class TestMood
     [DataRow("I am in Sad Mood")]
     public void TestSadMood(string message)
     {
-        MoodAnalyser moodAnalyser = new MoodAnalyser();
-        string result = moodAnalyser.AnalyseMood(message);
+        MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+        string result = moodAnalyser.AnalyseMood();
         Assert.AreEqual("Sad", result);
     }
 
@@ -27,8 +27,8 @@ public class TestMood
     [DataRow("I am in any Mood")]
     public void TestHappyMood(string message)
     {
-        MoodAnalyser moodAnalyser = new MoodAnalyser();
-        string result = moodAnalyser.AnalyseMood(message);
+        MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+        string result = moodAnalyser.AnalyseMood();
         Assert.AreEqual("Happy", result);
     }
 }
